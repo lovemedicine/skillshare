@@ -1,6 +1,6 @@
-# Simple Notes App
+# Skillshare App
 
-An app built with Next.js and Prisma that allows a user to view, create, delete, and search for notes.
+An app built with Next.js and Prisma that allows people to share their skills.
 
 
 ## Requirements
@@ -32,7 +32,7 @@ Then, run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to use the notes app.
+Open [http://localhost:3000](http://localhost:3000) with your browser to use the skillshare app.
 
 
 ## TODO
