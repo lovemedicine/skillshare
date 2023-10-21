@@ -1,12 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
+const userId = 'user_2WxFQLToUEAVPF5dyXwqoJXW2DG'
 const username = 'nettlepockets'
 
 async function main() {
   const note1 = await prisma.userSkill.create({
     data: {
       username,
+      userId,
       type: 'TEACH',
       skill: {
         create: {
@@ -18,6 +20,7 @@ async function main() {
   const note2 = await prisma.userSkill.create({
     data: {
       username,
+      userId,
       type: 'TEACH',
       skill: {
         create: {
@@ -28,6 +31,7 @@ async function main() {
   const note3 = await prisma.userSkill.create({
     data: {
       username,
+      userId,
       type: 'TEACH',
       skill: {
         create: {

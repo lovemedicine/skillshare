@@ -21,6 +21,7 @@ model UserSkill {
   id        Int       @id @default(autoincrement())
   createdAt  DateTime  @default(now())
   username  String
+  userId    String
   skill     Skill     @relation(fields: [skillId], references: [id])
   skillId   Int
   type      String

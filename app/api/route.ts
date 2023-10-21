@@ -29,6 +29,7 @@ export async function POST(request: Request) {
   const result = await prisma.userSkill.create({
     data: {
       username: user.username,
+      userId: userId,
       type: json.type,
       skill: {
         connectOrCreate: {
@@ -43,7 +44,6 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   const { userId } = auth()
-  const user = currentUser()
 
   if (!userId) {
     return new NextResponse("Unauthorized", { status: 401 })
@@ -53,7 +53,7 @@ export async function DELETE(request: Request) {
   const result = await prisma.userSkill.delete({
     where: {
       id: json.id,
-      username: user.username
+      userId: userId
     }
   })
   return NextResponse.json(result)

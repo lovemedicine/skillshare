@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google'
 import {
   ClerkProvider,
   SignedIn,
-  SignedOut,
-  SignInButton,
   UserButton,
 } from "@clerk/nextjs"
 import { Grid, Typography } from '@mui/material'
