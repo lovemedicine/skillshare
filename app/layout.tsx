@@ -1,4 +1,3 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {
@@ -8,7 +7,8 @@ import {
   SignInButton,
   UserButton,
 } from "@clerk/nextjs"
- 
+import { Grid, Typography } from '@mui/material'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 
 function Header() {
   return (
-    <header style={{ display: "flex", justifyContent: "space-between", padding: 20 }}>
+    <header style={{ backgroundColor: "#eee", display: "flex", justifyContent: "space-between", padding: 10 }}>
       <SignedIn>
-        <h1 className="mb-5 text-3xl font-bold">Skillshare App</h1>
+        <Typography variant="h4">Skillshare App</Typography>
         <UserButton />
       </SignedIn>
     </header>
@@ -35,9 +35,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={inter.className} style={{ margin: 0 }}>
           <Header />
-          {children}
+          <div style={{ padding: 10 }}>
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>

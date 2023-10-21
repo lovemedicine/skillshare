@@ -1,3 +1,6 @@
+import { TextField, InputAdornment } from '@mui/material'
+import Search from '@mui/icons-material/Search'
+
 type SkillSearchProps = {
   query: string,
   onChange: (event: any) => any
@@ -6,11 +9,19 @@ type SkillSearchProps = {
 export default function SkillSearch({ query, onChange }: SkillSearchProps) {
   return (
     <div className="mb-3">
-    Search: &nbsp;<input 
-      className="p-1 rounded-md border border-gray-400 text-black"
+    <TextField
+      variant="outlined"
+      size="small"
       value={query}
       onChange={onChange}
       placeholder="Enter search text here..."
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <Search />
+          </InputAdornment>
+        ),
+      }}
       />
     </div>
   )

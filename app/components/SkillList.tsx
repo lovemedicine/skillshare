@@ -1,4 +1,4 @@
-import { useUser } from '@clerk/nextjs'
+import { Card, CardContent, Typography } from '@mui/material'
 import { UserSkill } from '../types/models'
 
 type SkillListProps = {
@@ -16,15 +16,17 @@ export default function SkillList({ userSkills, query = "", hideUser = false, de
   return (
     <div>
       {filteredSkills.map(userSkill => (
-        <div key={userSkill.id} className="p-5 mb-5 border border-gray-400 rounded-md bg-white text-black">
-          <div>
-            <span className="text-2xl">{userSkill.skill.name}</span>
-            { false && <button className="text-sm text-blue-700" onClick={() => deleteSkill(userSkill.id)}>delete</button> }
-          </div>
-          <div className="text-sm">
-            offered by <span className="font-bold">{userSkill.username}</span> on {userSkill.createdAt.split("T")[0]}
-          </div>
-        </div>
+        <Card key={userSkill.id} variant="outlined" sx={{ mt: 1 }}>
+          <CardContent>
+            <Typography variant="h5">
+              <span className="text-2xl">{userSkill.skill.name}</span>
+              { false && <button className="text-sm text-blue-700" onClick={() => deleteSkill(userSkill.id)}>delete</button> }
+            </Typography>
+            <Typography variant="body1">
+              offered by <span className="font-bold">{userSkill.username}</span> on {userSkill.createdAt.split("T")[0]}
+            </Typography>
+          </CardContent>
+        </Card>
       ))}
     </div>
   )

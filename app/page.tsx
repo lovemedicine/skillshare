@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Typography } from '@mui/material'
 import AddSkillForm from './components/AddSkillForm'
 import SkillSearch from './components/SkillSearch'
 import SkillList from './components/SkillList'
@@ -45,13 +46,11 @@ export default function Home() {
 
   return (
     <>
-      <h3 className="text-2xl mb-3">Teach New Skill</h3>
+      <Typography variant="h6">Share a skill</Typography>
       <AddSkillForm addSkill={addSkill} />
 
-      <h3 className="text-2xl mb-3">All Skills</h3>
-
+      <Typography variant="h6">All skills</Typography>
       { isLoading && <div className="italic font-bold">Loading...</div> }
-
       { !isLoading &&
         <>
           <SkillSearch query={query} onChange={event => setQuery(event.target.value)} />

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Grid, TextField, Button } from '@mui/material'
 
 type AddSkillFormProps = {
   addSkill: (name: string) => void
@@ -19,21 +20,26 @@ export default function AddSkillForm({ addSkill }: AddSkillFormProps) {
   }
 
   return (
-    <div className="mb-5">
-      <input
-        className="block p-5 mb-3 w-full text-gray-900 rounded-lg border border-gray-400"
-        placeholder="Enter the name of a new skill here..."
-        onChange={event => setNewSkill(event.target.value)}
-        value={newSkill}
-        />
-      <button
-        className="inline-block p-2 bg-gray-300 rounded-md text-black border border-gray-400"
-        onClick={handleAddSkillClick}>Add Skill</button>
-      { !isValid &&
-        <div className="inline-block ml-5 text-red font-bold text-red-500">
-          Skills must be between 3 and 50 characters long
-        </div>
-      }
-    </div>
+    <Grid container>
+      <Grid item>
+        <TextField
+          variant="outlined"
+          size="small"
+          placeholder="Name of skill"
+          onChange={event => setNewSkill(event.target.value)}
+          value={newSkill}
+          error={!isValid}
+          helperText={isValid ? "" : "Skills must be between 3 and 50 characters long"}
+          />
+      </Grid>
+      <Grid item alignItems="stretch" style={{ display: "flex" }}>
+        &nbsp;
+        <Button
+          sx={{ textTransform: 'none' }}
+          variant="outlined"
+          onClick={handleAddSkillClick}
+        >Share</Button>
+      </Grid>
+    </Grid>
   )  
 }
