@@ -15,8 +15,8 @@ model User {
   createdAt   DateTime  @default(now())
   email       String    @unique
   username    String    @unique
-  first_name  String?
-  last_name   String?
+  firstName   String?
+  lastName    String?
   skills      UserSkill[]
 }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Grid, TextField, Button } from '@mui/material'
+import { addSkill } from '../util/api'
 
 type AddSkillFormProps = {
   callback: () => any
@@ -9,23 +10,14 @@ export default function AddSkillForm({ callback }: AddSkillFormProps) {
   let [newSkill, setNewSkill] = useState<string>("")
   let [isValid, setIsValid] = useState<boolean>(true)
 
-  async function addSkill(name: string) {
-    await fetch('/api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, type: 'TEACH' }),
-    })
-
-    callback()
-  }
-
-  function handleAddSkill(event) {
+  async function handleAddSkill(event) {
     event.preventDefault()
 
     if (newSkill.length >= 3 && newSkill.length <= 50) {
-      addSkill(newSkill)
+      await addSkill(newSkill)
       setNewSkill("")
       setIsValid(true)
+      callback()
     } else {
       setIsValid(false)
     }
@@ -55,5 +47,5 @@ export default function AddSkillForm({ callback }: AddSkillFormProps) {
         </Grid>
       </Grid>
     </form>
-  )  
+  )
 }
