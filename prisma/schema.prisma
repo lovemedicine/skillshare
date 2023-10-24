@@ -10,6 +10,16 @@ datasource db {
   url      = "file:skillshare.db"
 }
 
+model User {
+  id          String    @id @unique
+  createdAt   DateTime  @default(now())
+  email       String    @unique
+  username    String    @unique
+  first_name  String?
+  last_name   String?
+  skills      UserSkill[]
+}
+
 model Skill {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
@@ -19,8 +29,9 @@ model Skill {
 
 model UserSkill {
   id        Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
+  createdAt DateTime  @default(now())
   username  String
+  user      User      @relation(fields: [userId], references: [id])
   userId    String
   skill     Skill     @relation(fields: [skillId], references: [id])
   skillId   Int

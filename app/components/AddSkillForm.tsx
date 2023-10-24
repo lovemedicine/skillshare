@@ -2,12 +2,22 @@ import { useState } from 'react'
 import { Grid, TextField, Button } from '@mui/material'
 
 type AddSkillFormProps = {
-  addSkill: (name: string) => void
+  callback: () => any
 }
 
-export default function AddSkillForm({ addSkill }: AddSkillFormProps) {
+export default function AddSkillForm({ callback }: AddSkillFormProps) {
   let [newSkill, setNewSkill] = useState<string>("")
   let [isValid, setIsValid] = useState<boolean>(true)
+
+  async function addSkill(name: string) {
+    await fetch('/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, type: 'TEACH' }),
+    })
+
+    callback()
+  }
 
   function handleAddSkill(event) {
     event.preventDefault()

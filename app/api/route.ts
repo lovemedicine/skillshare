@@ -24,8 +24,8 @@ export async function POST(request: Request) {
   }
 
   const user = await currentUser()
+  const json = await request.json()
 
-  let json = await request.json()  
   const result = await prisma.userSkill.create({
     data: {
       username: user.username,
@@ -49,7 +49,7 @@ export async function DELETE(request: Request) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
-  let json = await request.json()
+  const json = await request.json()
   const result = await prisma.userSkill.delete({
     where: {
       id: json.id,

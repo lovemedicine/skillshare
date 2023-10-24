@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import {
-  ClerkProvider,
-  SignedIn,
-  UserButton,
-} from "@clerk/nextjs"
-import { Grid, Typography } from '@mui/material'
+import { ClerkProvider, SignedIn, UserButton } from '@clerk/nextjs'
+import { Typography } from '@mui/material'
+import Link from 'next/link'
+import './global.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +13,19 @@ export const metadata: Metadata = {
 }
 
 function Header() {
+  const style = {
+    backgroundColor: "#eee",
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 10
+  }
+  
   return (
-    <header style={{ backgroundColor: "#eee", display: "flex", justifyContent: "space-between", padding: 10 }}>
+    <header id="heaer" style={style}>
       <SignedIn>
-        <Typography variant="h4">Skillshare App</Typography>
+        <Typography variant="h4" sx={{ '& a': { color: 'black' }}}>
+          <Link id="logo" href="/">Skillshare App</Link>
+        </Typography>
         <UserButton />
       </SignedIn>
     </header>
