@@ -3,10 +3,10 @@ import { Grid, TextField, Button } from '@mui/material'
 import { addSkill } from '../util/api'
 
 type AddSkillFormProps = {
-  callback: () => any
+  refreshSkills: () => any
 }
 
-export default function AddSkillForm({ callback }: AddSkillFormProps) {
+export default function AddSkillForm({ refreshSkills }: AddSkillFormProps) {
   let [newSkill, setNewSkill] = useState<string>("")
   let [isValid, setIsValid] = useState<boolean>(true)
 
@@ -17,7 +17,7 @@ export default function AddSkillForm({ callback }: AddSkillFormProps) {
       await addSkill(newSkill)
       setNewSkill("")
       setIsValid(true)
-      callback()
+      refreshSkills()
     } else {
       setIsValid(false)
     }
