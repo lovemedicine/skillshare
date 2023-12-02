@@ -10,7 +10,7 @@ import { fetchSkills } from './util/api'
 export default function Home() {
   let [updated, setUpdated] = useState(Date.now())
   let [userSkills, setUserSkills] = useState<UserSkill[]>([])
-  let [isLoading, setIsLoading] = useState(false)
+  let [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetchSkills().then(result => {

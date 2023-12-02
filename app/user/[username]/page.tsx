@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import SkillList from '../../components/SkillList'
 import { User } from '../../types/models'
-import { fetchUser } from '../../util/api'
+import { fetchUser, fetchSkills } from '../../util/api'
 
 type UserPageProps = {
   params: {
@@ -14,9 +14,17 @@ type UserPageProps = {
 
 export default function UserPage({ params: { username } }: UserPageProps) {
   let [user, setUser] = useState<User | null>(null)
+  let [userSkills, setUserSkills] = useState<UserSkill[]>([])
+  let [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    fetchUser(username).then(json => setUser(json))
+    fetchUser(username).then(user => {
+      setUser(user)
+      fetchSkills(user.id).then(skills => {
+        setUserSkills(skills)
+        setIsLoading(false)
+      })
+    })
   }, [])
 
   return (
@@ -34,7 +42,7 @@ export default function UserPage({ params: { username } }: UserPageProps) {
       { user &&
         <>
           <Typography variant="h6">All skills</Typography>
-          <SkillList filterByUserId={user.id} />
+          <SkillList userSkills={userSkills} isLoading={isLoading} />
         </>
       }
     </>
